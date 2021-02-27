@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const categories = [
   {
@@ -31,17 +32,19 @@ const categories = [
   },
 ];
 
-const Categories = ({ onSelect, category }) => {
+const Categories = () => {
   return (
     <div className="Categories">
       {categories.map((c) => (
-        <div
+        <NavLink
           key={c.name}
-          onClick={() => onSelect(c.name)}
-          className={category === c.name ? "item active" : "item"}
+          className="item"
+          activeClassName="active"
+          exact
+          to={c.name === "all" ? "/" : `/${c.name}`}
         >
           {c.text}
-        </div>
+        </NavLink>
       ))}
     </div>
   );
